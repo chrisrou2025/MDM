@@ -1,0 +1,12 @@
+# Fichier .htaccess
+RewriteEngine On    # Activer le module de réécriture
+
+# Règle pour /produits ou /produits/ vers produits.php
+RewriteRule ^produits/?$ produits.php [NC,L]
+
+# Règle pour capturer un ID après un segment (ex: /produits/123)
+RewriteRule ^produits/(\d+)$ produits.php?id=$1 [NC,L]
+
+# Bonus : éviter les erreurs si fichiers statiques (images, css, etc.) sont demandés
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
